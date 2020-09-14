@@ -1,0 +1,93 @@
+<script>
+
+function computerPlay(){
+    let options =["rock", "paper", "scissors"];
+    return options[Math.floor(Math.random()* 3)];
+}
+function playRound (playerSelecion, computerSelection){
+
+    switch(playerSelecion){
+        case "rock":
+            if(computerSelection == "rock"){
+                return "It's a tie";
+            }else if(computerSelection ="paper"){
+                return "You lose! Paper beats Rock";
+            }else{
+                return "You win! Rock beats Scissors";
+            }
+            break
+        case "scissors":
+            if(computerSelection == "scissors"){
+                return "It's a tie";
+            }else if(computerSelection ="paper"){
+                return "You win! Scissors beats Paper";
+            }else{
+                return "You lose! Rock beats Scissors";
+            }
+            break;
+        case "paper":
+            if(computerSelection == "paper"){
+                return "It's a tie";
+            }else if(computerSelection ="rock"){
+                return "You win! Paper beats Rock";
+            }else{
+                return "You lose! Scissors beats Paper";
+            }
+            break;
+            
+    }
+
+}
+function checkerPlayerSelection(playerSelecion){
+    
+    if(playerSelecion == "rock"){
+        return true;
+    }else if (playerSelecion == "paper"){
+        return true;
+    }else if (playerSelecion == "scissors"){
+        return true;
+    }
+
+    return false;
+}
+function game(){
+
+let round = 0;
+let playerScore = 0;
+let computerScore = 0;
+
+while(round <5){
+    let playerSelecion = prompt("Rock, paper or Scissors?");
+    playerSelecion = playerSelecion.toLowerCase();
+    if(checkerPlayerSelection(playerSelecion)){
+        let computerSelection = computerPlay();
+        let result = playRound(playerSelecion, computerSelection);
+        if(result.search("win") != -1){
+            playerScore++;
+        }else if(result.search("lose") != -1){
+            computerScore++;
+        }
+        
+        
+        console.log(result);
+        console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
+        round++;
+    }else{
+        console.log("incorrect input, try again")
+    }
+
+}
+
+if(playerScore ==computerScore){
+    alert("TIED")
+}else if(playerScore > computerScore){
+    alert("VICTORY")
+}else{
+    alert("DEFEATED")
+}
+
+}
+
+game();
+
+</script>
